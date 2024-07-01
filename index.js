@@ -9,26 +9,19 @@ const debugStartUp = require('debug')('app:startup');
 const express = require('express');
 const app = express();
 
+
+
 //Init Startup Error Logger
 require('@startup/errorLog.start')(process);
 
 //Init all Databases Here
 
 
-
-
-//Simulate an Uncaught Error code
-//throw new Error('Thrown Error');
-
-//Simulate an Unhandled Error code
-// const p = Promise.reject(new Error('Thrown Rejected Promise Error'));
-// p.then(()=> console.log('done'));
-
-
-
-
+//Starting View Engine
+require('@startup/viewEngine.start')(app);
 
 //All Routes //./app/routes/
+require('@routes/web.routes')(app);
 require('@routes/admin.routes')(app);
 require('@routes/api.routes')(app);
 

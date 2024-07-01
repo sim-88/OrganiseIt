@@ -2,18 +2,17 @@
 //Middlewares
 const viewErrorsMiddleware = require('@middlewares/viewErrors.middleware');
 
-//Controllers
-const dashboardController = require('@controllers/admin/dashboard.controller');
 
+//Controllers
+const homeController = require('@controllers/web/home.controller');
 
 
 module.exports = function(app){
+
   
-
-
   //Routes Starts Here ---------------------------------------------
-  app.use('/admin/', dashboardController);
-  
+  app.use('/', homeController)  
+
 
   //Routes Ends Here ---------------------------------------------
 

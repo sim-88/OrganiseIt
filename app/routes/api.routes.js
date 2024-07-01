@@ -1,20 +1,21 @@
-const express = require('express');
 
-const baseController = require('@controllers/api/base.controller');
+//Middlewares
 const apiErrorsMiddleware = require('@middlewares/apiErrors.middleware');
 
+//Controllers
+const baseController = require('@controllers/api/base.controller');
 
-module.exports = function(app){
 
+module.exports = function(app)
+{
 
- app.use(express.json());
+    //Routes Starts Here ---------------------------------------------
+    app.use('/api/', baseController);
+    
 
- //All Routes to Controller
- app.use('/api/', baseController);
-
- //Log all API trown errors
- app.use(apiErrorsMiddleware);
-
+    //Routes Ends Here ---------------------------------------------
+    
+    app.use(apiErrorsMiddleware); //Log all API trown errors
 
 
 }
