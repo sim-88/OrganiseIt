@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 
     res.cookie('sessionid', sessionId, { httpOnly: true }); // Set session ID cookie
 
-    res.status(200).send('Login successful.');
+    res.status(200).redirect('/admin'); // Redirect to /admin
 });
 
 module.exports = router;
