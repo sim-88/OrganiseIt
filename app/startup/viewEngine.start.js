@@ -1,18 +1,10 @@
 const express = require('express');
-var expressLayouts = require('express-ejs-layouts');
-const cookieParser = require('cookie-parser');
+const path = require('path');
 
-module.exports = function(app){
-
-  //Set view engine as ejs
-  app.set('view engine', 'ejs');
-  app.use(expressLayouts);
-  app.set('views','./app/views');
-  //app.set('layout', 'layouts/layout'); Set default layouts
-
-
-  app.use(cookieParser());
-  app.use(express.json());
-
-
-}
+module.exports = function(app) {
+    app.set("view engine", "ejs");
+    app.set('views','./app/views');
+    
+    // Serve static files from the 'public' directory
+    app.use(express.static(path.join(__dirname, 'public')));
+};

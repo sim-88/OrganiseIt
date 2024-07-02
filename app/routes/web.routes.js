@@ -1,22 +1,16 @@
+const express = require('express');
 
-//Middlewares
-const viewErrorsMiddleware = require('@middlewares/viewErrors.middleware');
+const baseController = require('@controllers/web/base.controller');
+const apiErrorsMiddleware = require('@middlewares/apiErrors.middleware');
+const homepageController = require('@controllers/web/homepage.controller');
 
+module.exports = function (app) {
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+    // All Routes to Controller
+    app.use('/api/', baseController);
+    app.use('/', homepageController);
 
-//Controllers
-const homeController = require('@controllers/web/home.controller');
-
-
-module.exports = function(app){
-
-  
-  //Routes Starts Here ---------------------------------------------
-  app.use('/', homeController)  
-
-
-  //Routes Ends Here ---------------------------------------------
-
-  //Log all thrown errors
-  app.use(viewErrorsMiddleware);
-
-}
+    // Log all API thrown errors
+    app.use(apiErrorsMiddleware);
+};
